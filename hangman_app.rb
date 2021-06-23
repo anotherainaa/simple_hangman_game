@@ -6,13 +6,14 @@ require 'tilt/erubis'
 ALPHABET = ("A".."Z").to_a
 
 configure do
+  set :port, 5000
   enable :sessions
   set :sessions_secret, 'secret'
 end
 
 def generate_secret_word
-  words = ["EASY", "MEDIUM", "WASHINGTON", "CATERPILLAR"]
-  words.sample
+  words = ["easy", "medium", "mastery", "assessment", "advanced", "launch school", "not yet"]
+  words.sample.upcase
 end
 
 def initialize_game
@@ -27,9 +28,11 @@ before '/game' do
 end
 
 helpers do
-  def display_word(word)
+  def display_secret_word(word)
     word.chars.map do |letter|
       if session[:correct_guesses].include?(letter)
+        " #{letter} "
+      elsif letter =~ /[^A-Z]/
         " #{letter} "
       else
         " _ "
@@ -51,10 +54,6 @@ get '/game' do
   erb :game
 end
 
-def player_won?
-  session[:secret_word].chars.all? { |letter| session[:correct_guesses].include?(letter) }
-end
-
 def error_for_letter_guess(letter)
   remaining_alphabets = ALPHABET - session[:correct_guesses] - session[:wrong_guesses]
   if !ALPHABET.include?(letter)
@@ -62,6 +61,21 @@ def error_for_letter_guess(letter)
   elsif !remaining_alphabets.include?(letter)
     "Pick a letter that hasn't been picked."
   end
+end
+
+def player_won?
+  session[:secret_word].delete("^A-Z").chars.all? do |letter|
+    session[:correct_guesses].include?(letter)
+  end
+end
+
+def no_remaining_guesses?
+  session[:remaining_guesses] == 0
+end
+
+def check_game_status
+  redirect '/win' if player_won?
+  redirect '/gameover' if no_remaining_guesses?
 end
 
 post '/game' do
@@ -78,13 +92,8 @@ post '/game' do
     session[:remaining_guesses] -= 1
   end
 
-  if session[:remaining_guesses] == 0
-    redirect '/gameover'
-  elsif player_won?
-    redirect '/win'
-  else
-    redirect '/game'
-  end
+  check_game_status
+  redirect '/game'
 end
 
 def reset_game
