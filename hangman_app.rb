@@ -6,7 +6,6 @@ require 'tilt/erubis'
 ALPHABET = ("A".."Z").to_a
 
 configure do
-  set :port, 9494
   enable :sessions
   set :sessions_secret, 'secret'
 end
