@@ -1,0 +1,48 @@
+body {
+  font-family: Roboto;
+  padding: 20px 20px;
+  background-color: #609EC1;
+  color: #f8f8ff;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+form {
+  display: inline;
+}
+
+button {
+  color: #f8f8ff;
+  background-color: #B9B753;
+  border: none;
+  border-radius: 5px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.btn {
+  display: block;
+  width: 50px;
+  height: 25px;
+  background: #B9B753;
+  text-align: center;
+  border-radius: 5px;
+  color: #f8f8ff;
+  font-weight: bold;
+  line-height: 25px;
+  text-decoration: none;
+}
+
+.message {
+  background-color: #FCAB54;
+  color: #f8f8ff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.secret {
+  font-weight: bold;
+  font-size: 30px;
+}

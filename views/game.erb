@@ -1,0 +1,11 @@
+<img class="hangman" src="/images/man<%= @remaining_guesses %>.png" alt="hangman">
+
+<p class="secret"><%= display_word(@secret_word) %></p>
+
+<p>You have <%= @remaining_guesses %> guesses left!</p>
+
+<% @remaining_alphabets.each do |letter| %>
+<form class="letter" action="/game/<%= letter %>" method="post">
+  <button type="submit"><%= letter %></button>
+</form>
+<% end  %>
