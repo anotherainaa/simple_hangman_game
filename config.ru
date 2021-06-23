@@ -1,2 +1,2 @@
-require './todo'
+require './hangman_app'
 run Sinatra::Application
