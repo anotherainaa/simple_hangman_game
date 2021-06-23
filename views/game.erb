@@ -2,10 +2,8 @@
 
 <p class="secret"><%= display_word(@secret_word) %></p>
 
-<p>You have <%= @remaining_guesses %> guesses left!</p>
-
 <% @remaining_alphabets.each do |letter| %>
-<form class="letter" action="/game/<%= letter %>" method="post">
-  <button type="submit"><%= letter %></button>
+<form class="letter" action="/game" method="post">
+  <button name="letter_guess" type="submit" value="<%= letter %>"><%= letter %></button>
 </form>
 <% end  %>

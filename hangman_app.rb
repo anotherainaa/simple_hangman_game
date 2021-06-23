@@ -64,7 +64,7 @@ def error_for_letter_guess(letter)
   end
 end
 
-post '/game/:letter_guess' do
+post '/game' do
   letter = params[:letter_guess].capitalize
 
   error = error_for_letter_guess(letter)
@@ -95,6 +95,7 @@ def reset_game
 end
 
 get '/gameover' do
+  @secret_word = session[:secret_word]
   erb :gameover
 end
 
