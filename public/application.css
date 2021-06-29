@@ -3,6 +3,7 @@ body {
   padding: 20px 20px;
   background-color: #609EC1;
   color: #f8f8ff;
+  text-align: center;
 }
 
 h1 {
@@ -20,15 +21,15 @@ button {
   border-radius: 5px;
   font-size: 30px;
   font-weight: bold;
+  margin: 5px;
 }
 
 div.guessing_space {
   white-space: pre-wrap;
 }
 
-
-.btn {
-  display: block;
+a.btn {
+  display: inline-block;
   width: 50px;
   height: 25px;
   background: #B9B753;
@@ -45,11 +46,24 @@ div.guessing_space {
   color: #f8f8ff;
   padding: 10px;
   border-radius: 10px;
+  width: 99%;
 }
 
 .secret {
   font-weight: bold;
   font-size: 30px;
+}
+
+span.letter {
+  display: inline-block;
+  color: #f8f8ff;
+  background-color: #EE5F5B;
+  border: none;
+  border-radius: 5px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 1px 6px 1px 6px;
+  margin: 5px;
 }
 
 

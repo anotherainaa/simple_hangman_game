@@ -2,11 +2,19 @@
 
 
 <div class="guessing_space">
-  <p class="secret"><%= display_secret_word(@secret_word) %></p>
+  <p class="secret"><%= @secret_word %></p>
 </div>
 
-<% @remaining_alphabets.each do |letter| %>
-<form class="letter" action="/game" method="post">
-  <button name="letter_guess" type="submit" value="<%= letter %>"><%= letter %></button>
-</form>
-<% end  %>
+<div class="alphabets">
+  <% @alphabets.each do |letter| %>
+    <% if @remaining_alphabets.include?(letter) %>
+      <form class="letter" action="/game" method="post">
+        <button name="letter_guess" type="submit" value="<%= letter %>"><%= letter %></button>
+      </form>
+    <% else %>
+      <span class="letter">
+        <%= letter %>
+      </span>
+    <% end  %>
+  <% end  %>
+</div>
